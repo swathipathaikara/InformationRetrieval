@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Search Page{% endblock %}
+{% block contents %}
+<body style="background-color:#ededf7">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="search-result-box card-box">
+          <div class="row">
+            <div class="col-md-8 offset-md-2">
+              <div class="pt-3 pb-4">
+                <div class="search-form">
+                <div class="mt-4 text-center"><h3>A Search Engine <h3> <h4> Information Retrieval Coursework - Task 1</h4></div>
+                  <form action="#" method="POST">
+                      <div class="input-group">
+                      <input type="text" name="msg" class="form-control input-lg">
+                      <div class="input-group-btn">
+                      <button class="btn  btn-primary" type="submit">Search</button>
+                      </div>
+                      </div>
+                  </form>
+                </div>
+                <div class="mt-4 text-center"><h5>Search Results for '{{user_query}}'</h5></div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+         <ul class="nav nav-tabs tabs-bordered">
+             <li class="nav-item">
+              {{doc_length}} search results in {{time_taken}} milliseconds<span class="search-item"></span></a></li>
+          </ul>
+          
+             <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="search-item">
+                              
+
+
+                                 <p class="mb-0 text-muted"></p>
+                                 
+                                 
+                                   
+                                <table>
+                                {%- for row in result_list|batch(1, '&nbsp;') %}
+                                  <tr>
+                                  {%- for column in row %}
+                                    <td> 
+                                    <a href={{ column['authorUrl']}} ><li>Author URL: {{ column['authorUrl']| replace("{", "")|replace("}", "") }}</a></li>
+            
+                                    <a href={{ column['publicationUrl']}} ><li>Publication URL: {{ column['publicationUrl']| replace("{", "")|replace("}", "") }}</a></li>
+                                    <i>Description: {{ column['Description']| replace("{", "")|replace("}", "") }}</i>
+                                   
+                                    </td>
+                                  {%- endfor %}
+                                  </tr>
+                                {%- endfor %}
+                                </table>
+                                    
+                                                        
+                           </div>
+                     </div>
+                </div>
+                <!-- end All results tab -->
+
+              </div>
+            </div>
+         </div>
+        </div>
+        <!-- end row -->
+
+
+  </div>
+  <!-- container -->
+
+</body>
+
+
+{% endblock %}
